@@ -20,7 +20,7 @@
     "OWNER_NAME": {
       "description": "Owner name",
       "required": false,
-      "value": "Koyoteh"
+      "value": "GuruTech"
     },
     "MODE": {
       "description": "Bot mode: 'public' (everyone can use) or 'private' (only bot owner)",
