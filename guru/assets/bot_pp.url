@@ -1,1 +1,32 @@
-https://tmpfiles.org/dl/36257265/panther_1777780194457.jpg
+"use strict";
+
+const fs   = require("fs-extra");
+const path = require("path");
+
+const envPath = path.join(__dirname, "..", ".env");
+if (fs.existsSync(envPath)) require("dotenv").config({ path: envPath, quiet: true });
+
+module.exports = {
+    MODE:             process.env.MODE || "public",
+    SESSION_ID:       process.env.SESSION_ID,
+    TIME_ZONE:        process.env.TIME_ZONE || "Africa/Kampala",
+    AUTO_READ_STATUS: process.env.AUTO_READ_STATUS || "false",
+    AUTO_LIKE_STATUS: process.env.AUTO_LIKE_STATUS || "false",
+    DATABASE_URL:     process.env.DATABASE_URL,
+    OWNER_NUMBER:     process.env.OWNER_NUMBER || "256726940466",
+    OWNER_NAME:       process.env.OWNER_NAME || "David",
+    BOT_NAME:         process.env.BOT_NAME || "COOLGUY MD TECH",
+    PREFIX:           process.env.PREFIX || ".",
+    MENU_IMAGE:       process.env.MENU_IMAGE || "https://files.catbox.moe/2rrq0u.jpg",
+    ALIVE_IMG:        process.env.ALIVE_IMG || "https://files.catbox.moe/2rrq0u.jpg",
+    BOT_IMAGE:        process.env.BOT_IMAGE || "https://files.catbox.moe/2rrq0u.jpg",
+    IMAGE:            process.env.IMAGE || "https://files.catbox.moe/2rrq0u.jpg",
+    ALIVE_IMAGE:      process.env.ALIVE_IMAGE || "https://files.catbox.moe/2rrq0u.jpg",
+};
+
+const self = require.resolve(__filename);
+fs.watchFile(self, () => {
+    fs.unwatchFile(self);
+    delete require.cache[self];
+    require(self);
+});
